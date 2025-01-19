@@ -3,7 +3,7 @@ package com.example.weatherapp.domain.useCase.search
 import com.example.weatherapp.domain.repository.SearchRepository
 import javax.inject.Inject
 
-class SearchCitiesUseCase @Inject constructor(
+class SearchCityUseCase @Inject constructor(
     private val repository: SearchRepository
 ) {
 

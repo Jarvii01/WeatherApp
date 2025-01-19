@@ -1,4 +1,4 @@
-package com.example.weatherapp.domain.useCase.details
+package com.example.weatherapp.domain.useCase.weather
 
 import com.example.weatherapp.domain.repository.WeatherRepository
 import javax.inject.Inject

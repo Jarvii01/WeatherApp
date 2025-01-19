@@ -4,11 +4,10 @@ import com.example.weatherapp.domain.entity.City
 import com.example.weatherapp.domain.repository.FavouriteRepository
 import javax.inject.Inject
 
-class ChangeFavouriteStateUseCase @Inject constructor(
+class AddToFavouriteStateUseCase @Inject constructor(
     private val repository: FavouriteRepository
 ) {
 
-    suspend fun addToFavourite(city: City) = repository.addToFavourite(city)
+    suspend operator fun invoke(city: City) = repository.addToFavourite(city)
 
-    suspend fun removeFromFavourite(cityId: Int) = repository.removeFromFavourite(cityId)
 }
