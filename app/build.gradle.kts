@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.ksp)
     alias(libs.plugins.parcelize)
+    kotlin("plugin.serialization")
 }
 
 android {
@@ -24,7 +25,8 @@ android {
 
     androidComponents {
         val key =
-            property("api-key")?.toString() ?: error("You should add api-key into gradle.properties")
+            property("api-key")?.toString()
+                ?: error("You should add api-key into gradle.properties")
 
         onVariants { variant ->
             variant.buildConfigFields.put(
@@ -75,8 +77,11 @@ dependencies {
     implementation(libs.mvikotlin.logging)
 
     //Decompose
+//    implementation("com.arkivanov.decompose:decompose-android:3.3.0-alpha03")
+//    implementation("com.arkivanov.decompose:extensions-compose:3.3.0-alpha03")
     implementation(libs.decompose.core)
-    implementation(libs.decompose.jetpack)
+    implementation(libs.decompose.compose)
+
 
     //Database
     implementation(libs.room.core)
@@ -100,6 +105,9 @@ dependencies {
     //Icons
     implementation(libs.icons)
 
+    //Serialization
+    implementation(libs.kotlinx.serialization.json)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -108,3 +116,4 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 }
+

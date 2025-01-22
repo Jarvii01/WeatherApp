@@ -1,6 +1,7 @@
 package com.example.weatherapp.di
 
 import android.content.Context
+import com.example.weatherapp.presentation.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 
@@ -9,8 +10,11 @@ import dagger.Component
 interface ApplicationComponent {
 
 
+    fun inject(activity: MainActivity)
+
+
     @Component.Factory
-    interface Factory{
+    interface Factory {
 
         fun create(
             @BindsInstance context: Context

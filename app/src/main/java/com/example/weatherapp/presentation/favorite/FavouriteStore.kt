@@ -20,7 +20,7 @@ interface FavouriteStore : Store<Intent, State, Label> {
 
         data object ClickToSearch : Intent
 
-        data object ClickToFavourite : Intent
+        data object ClickAddToFavourite : Intent
 
         data class CityItemClicked(val city: City) : Intent
 
@@ -54,9 +54,9 @@ interface FavouriteStore : Store<Intent, State, Label> {
 
     sealed interface Label {
 
-        data object OpenSearchScreen : Label
+        data object OpenSearchCityScreen : Label
 
-        data object ClickToFavourite : Label
+        data object OpenFavouriteCityScreen : Label
 
         data class OpenCityDetailsScreen(val city: City) : Label
     }
@@ -117,12 +117,12 @@ class FavouriteStoreFactory @Inject constructor(
                 publish(Label.OpenCityDetailsScreen(intent.city))
             }
 
-            Intent.ClickToFavourite -> {
-                publish(Label.ClickToFavourite)
+            Intent.ClickAddToFavourite -> {
+                publish(Label.OpenFavouriteCityScreen)
             }
 
             Intent.ClickToSearch -> {
-                publish(Label.OpenSearchScreen)
+                publish(Label.OpenSearchCityScreen)
             }
         }
 

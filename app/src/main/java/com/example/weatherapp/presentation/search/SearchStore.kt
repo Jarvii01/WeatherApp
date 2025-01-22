@@ -53,7 +53,7 @@ interface SearchStore : Store<Intent, State, Label> {
 
         data object OpenFavouriteScreen : Label
 
-        data class OpenCityDetailsScreen(val city: City) : Label
+        data class OpenForecast(val city: City) : Label
 
     }
 }
@@ -120,7 +120,7 @@ class SearchStoreFactory @Inject constructor(
                         }
 
                         OpenReason.RegularSearch -> {
-                            publish(Label.OpenCityDetailsScreen(intent.city))
+                            publish(Label.OpenForecast(intent.city))
                         }
                     }
 

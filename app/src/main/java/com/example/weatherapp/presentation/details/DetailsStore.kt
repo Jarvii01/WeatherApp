@@ -45,7 +45,7 @@ interface DetailsStore : Store<Intent, State, Label> {
     }
 
     sealed interface Label {
-        data object OpenPreviousScreen : Label
+        data object OpenBackScreen : Label
     }
 }
 
@@ -117,7 +117,7 @@ class DetailsStoreFactory @Inject constructor(
         override fun executeIntent(intent: Intent) {
             when (intent) {
                 Intent.ClickBack -> {
-                    publish(Label.OpenPreviousScreen)
+                    publish(Label.OpenBackScreen)
                 }
 
                 Intent.ClickChangeFavouriteStatus -> {
@@ -135,10 +135,21 @@ class DetailsStoreFactory @Inject constructor(
 
         override fun executeAction(action: Action) {
             when (action) {
-                is Action.FavouriteStatusChanged -> Msg.FavouriteStatusChanged(action.isFavourite)
-                is Action.ForecastLoaded -> Msg.ForecastLoaded(action.forecast)
-                Action.ForecastLoadingError -> Msg.ForecastLoadingError
-                Action.ForecastStartLoading -> Msg.ForecastStartLoading
+                is Action.FavouriteStatusChanged -> {
+                    dispatch(Msg.FavouriteStatusChanged(action.isFavourite))
+                }
+
+                is Action.ForecastLoaded -> {
+                    dispatch(Msg.ForecastLoaded(action.forecast))
+                }
+
+                Action.ForecastLoadingError -> {
+                    dispatch(Msg.ForecastLoadingError)
+                }
+
+                Action.ForecastStartLoading -> {
+                    dispatch(Msg.ForecastStartLoading)
+                }
             }
         }
     }
