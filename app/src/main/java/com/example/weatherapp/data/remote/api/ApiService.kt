@@ -1,6 +1,5 @@
 package com.example.weatherapp.data.remote.api
 
-import com.example.weatherapp.data.remote.dto.current.CurrentDto
 import com.example.weatherapp.data.remote.dto.current.WeatherCurrentDto
 import com.example.weatherapp.data.remote.dto.forecast.WeatherForecastDto
 import com.example.weatherapp.data.remote.dto.location.CityDto

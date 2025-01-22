@@ -1,5 +1,6 @@
 package com.example.weatherapp.data.remote.api
 
+import java.util.Locale
 import com.example.weatherapp.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -11,6 +12,7 @@ object ApiFactory {
 
     private const val BASE_URL = "http://api.weatherapi.com/v1/"
     private const val KEY_PARAM = "key"
+    private const val LANG_PARAM = "lang"
 
     private val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
@@ -23,6 +25,7 @@ object ApiFactory {
                 .url
                 .newBuilder()
                 .addQueryParameter(KEY_PARAM, BuildConfig.WEATHER_API_KEY)
+                .addQueryParameter(LANG_PARAM, Locale.getDefault().language)
                 .build()
             val newRequest = originalRequest.newBuilder()
                 .url(newUrl)
